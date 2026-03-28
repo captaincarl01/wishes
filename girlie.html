@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Someone Special ❤️</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 600px;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 15px 0;
+  object-fit: cover;
+  border: 4px solid white;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  background: white;
+  color: #ff4e8a;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.heart {
+  position: absolute;
+  bottom: -10px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO -->
+<audio id="voiceNote" src="ttts.m4a" preload="auto"></audio>
+
+<div class="container">
+
+  <!-- FIRST SCREEN -->
+  <div id="startScreen">
+    <h1>🎁 Hey... Anuoluwapo..</h1>
+    <p>I made something for you ❤️</p>
+    <button onclick="openGift()">Click to Open</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="mainContent" class="hidden">
+   <h1>
+  Happy Birthday <br>
+  <span id="name" style="font-size: 1.8rem;"></span> 🎉
+</h1>
+
+    <!-- HER IMAGE -->
+    <img src="ttt.JPG" alt="Her Picture">
+
+   <p id="typedMessage" style="margin-top:15px; white-space: pre-line;"></p>
+
+    <p style="margin-top:15px;">— From your tech guy Carl 😉</p>
+  </div>
+
+</div>
+
+<script>
+  const girlName = "Elizabeth Anuoluwapo Daudu";
+
+  const nameElement = document.getElementById("name");
+
+  const messageText = `Anuoluwapo, you may not be into tech, but I used what I love
+to create something special just for you 💖
+
+You’re truly amazing, and I hope today brings you happiness, smiles, and everything beautiful.`;
+
+  let i = 0;
+  let j = 0;
+
+  function openGift() {
+    document.getElementById("startScreen").classList.add("hidden");
+    document.getElementById("mainContent").classList.remove("hidden");
+
+    document.getElementById("voiceNote").play();
+
+    animateName();
+    typeMessage();
+    startHearts();
+  }
+
+  // 🔥 NAME ANIMATION (letter by letter)
+  function animateName() {
+    if (i < girlName.length) {
+      nameElement.textContent += girlName.charAt(i);
+      i++;
+      setTimeout(animateName, 80);
+    }
+  }
+
+  // 🔥 TYPING EFFECT FOR MESSAGE
+  function typeMessage() {
+    const messageEl = document.getElementById("typedMessage");
+
+    if (j < messageText.length) {
+      messageEl.textContent += messageText.charAt(j);
+      j++;
+      setTimeout(typeMessage, 30);
+    }
+  }
+
+  function startHearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
